@@ -1,13 +1,13 @@
 export type QuizOption = {
-    id: number,
-    optionDesc:string,
-    answer: boolean,
-    isAnswered:string
+  id: number;
+  optionDesc: string;
+  answer: boolean;
 };
 
 export type QuizQuestions = {
   id: number;
   questionDesc: string;
+  isAnswered: string;
   option: Array<QuizOption>;
 };
 
