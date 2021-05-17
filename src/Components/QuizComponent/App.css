@@ -205,7 +205,6 @@ i {
 }
 .quiz-left-tree .tree {
   width: 40%;
-  /* border: 1px solid red; */
   display: block;
   margin-left:  33.5%;
  
@@ -224,4 +223,43 @@ i {
 }
 .tree p i{
    padding-left: .5rem; 
+}
+
+/* mobile */
+@media screen and (max-width: 1000px) {
+    .quiz-left{
+        display:none;
+    }
+    .quiz-main{
+        width: 95%;
+        height: 155vh;
+    
+    }
+    .quiz-body {
+        height: 165vh;
+    }
+    .quiz-right {
+        /* border: 1px solid red; */
+        flex: 2;
+        padding-left: .1rem;
+      }
+      .quiz-right-top h3 {
+        text-align: center;
+      }
+      .quiz-right-top h2 {
+        text-align: center;
+
+      }
+      .quiz-right-question p {
+        text-align: center;
+      }
+      .quiz-right-options {
+        /* border: 1px solid red; */
+        /* padding-top: .rem; */
+        display: block;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        margin: auto !important;
+      }
 }
