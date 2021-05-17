@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
+import QuizComponent from './Components/QuizComponent/QuizComponent';
 
 function App() {
   return (
     <div className="App">
-     <h1>HEY</h1>
+     <QuizComponent/>
+     
     </div>
   );
 }
