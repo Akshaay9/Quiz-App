@@ -1,4 +1,5 @@
-import { Quiz } from "../Contexts/QuizContext/quizContext.type";
+
+import { Quiz } from "./Data.type";
 
 export const FitnessQuiz: Quiz = {
   category: "fitness",

@@ -1,7 +1,18 @@
 import ProgressBar from "@ramonak/react-progress-bar";
+import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
 import "./App.css";
 import UrgeWithPleasureComponent from "./CountdownTimer";
 function QuizComponent() {
+  const { quizState, quizDispatch } = useQuizContext();
+
+  const getQuestion = (id: number) => {
+    return quizState.quiz.questions.find((ele) => ele.id == id);
+  };
+
+  const getCurrentQuestion = (id: number) => {
+    return getQuestion(id)?.questionDesc;
+  };
+
   return (
     <div className="quiz-body">
       <div className="quiz-main">
@@ -9,16 +20,16 @@ function QuizComponent() {
 
         <div className="quiz-left">
           <div className="quiz-left-avatar">
-            <img src="https://avatars.dicebear.com/api/male/:seed.svg" alt="" />
+            <img src={quizState.userAvatar} alt="" />
           </div>
           <div className="quiz-left-intro">
             <h2>
-              Welcome <span>Akshay</span>{" "}
+              Welcome <span>{quizState.userName}</span>{" "}
             </h2>
           </div>
           <div className="quiz-left-score">
             <h3>
-              Current Score : <span>10</span>
+              Current Score : <span>{quizState.currentScore}</span>
             </h3>
           </div>
           <div className="quiz-left-tree">
@@ -58,17 +69,20 @@ function QuizComponent() {
         </div>
         <div className="quiz-right">
           <div className="quiz-right-top">
-            <h3>Fitness Quiz</h3>
+            <h3>{quizState.categorySelected} Quiz</h3>
             <h2>
               <span>Question</span>
-              <span>01</span>
+              <span>{quizState.currentQuestion}</span>
               <span>/</span>
-              <span>05</span>
+              <span>{quizState.quiz.questions.length}</span>
             </h2>
           </div>
           <div className="quiz-right-progress">
             <ProgressBar
-              completed={60}
+              completed={
+                (quizState.currentQuestion / quizState.quiz.questions.length) *
+                100
+              }
               bgColor="#212949"
               height="1.5rem"
               labelColor="white"
@@ -76,10 +90,8 @@ function QuizComponent() {
           </div>
           <div className="quiz-right-question">
             <p>
-              <span>01)</span>Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Provident nisi eligendi ad doloremque praesentium, iure
-              dolor beatae reiciendis quidem, architecto earum, ullam vitae vel
-              nihil. Quidem voluptatibus id ad dolore?
+              <span>0{quizState.currentQuestion})</span>
+              {getCurrentQuestion(quizState.currentQuestion)}
             </p>
           </div>
           <div className="quiz-right-countdown">
