@@ -1,6 +1,6 @@
 import { createContext, useContext, useReducer } from "react";
 import { FitnessQuiz } from "../../Data/FitnessData";
-import { InitialState } from "./QuizContext.type";
+import { InitialState, ContextType } from "./QuizContext.type";
 import { quizReducer } from "./QuizReducer";
 
 const intitalState: InitialState = {
@@ -9,20 +9,16 @@ const intitalState: InitialState = {
   categorySelected: "fitness",
   currentScore: 0,
   currentQuestion: 1,
+  timer: 10,
   quiz: FitnessQuiz,
 };
 
-const QuizContext = createContext<{
-  quizState: InitialState;
-  quizDispatch: React.Dispatch<any>;
-}>({ quizState: intitalState, quizDispatch: () => null });
+const QuizContext = createContext<ContextType>({} as ContextType);
 
 export const QuizContextFun: React.FC = ({ children }) => {
-  const [state, dispatch] = useReducer(quizReducer, intitalState);
+  const [quizState, quizDispatch] = useReducer(quizReducer, intitalState);
   return (
-    <QuizContext.Provider
-      value={{ quizState: intitalState, quizDispatch: () => null }}
-    >
+    <QuizContext.Provider value={{ quizState, quizDispatch }}>
       {children}
     </QuizContext.Provider>
   );

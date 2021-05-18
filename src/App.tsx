@@ -1,14 +1,17 @@
-import React from 'react';
-import './App.css';
-import QuizComponent from './Components/QuizComponent/QuizComponent';
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+import HomeScreen from "./Components/HomeScreen/HomeScreen";
+import QuizComponent from "./Components/QuizComponent/QuizComponent";
 
 function App() {
   return (
-    <div className="App">
-     <QuizComponent/>
-     
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/:id" element={<QuizComponent />} />
+       
+      </Routes>
+    </BrowserRouter>
   );
 }
 

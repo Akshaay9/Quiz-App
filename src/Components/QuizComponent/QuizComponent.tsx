@@ -1,17 +1,41 @@
 import ProgressBar from "@ramonak/react-progress-bar";
+import { useEffect, useState } from "react";
+import { setTimeout } from "timers";
 import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
+import { QuizQuestions } from "../../Data/Data.type";
 import "./App.css";
 import UrgeWithPleasureComponent from "./CountdownTimer";
+import QuizOptions from "./QuizOptions";
+
 function QuizComponent() {
   const { quizState, quizDispatch } = useQuizContext();
+  const [timer, setTimer] = useState<number>(quizState.timer);
 
-  const getQuestion = (id: number) => {
-    return quizState.quiz.questions.find((ele) => ele.id == id);
+  const getCurrentQuestion = (id: number): QuizQuestions | undefined => {
+    const currQuestion = quizState.quiz.questions.find((ele) => ele.id == id);
+    return currQuestion;
   };
 
-  const getCurrentQuestion = (id: number) => {
-    return getQuestion(id)?.questionDesc;
-  };
+  useEffect(() => {
+    if (timer == 0) {
+      quizDispatch({
+        type: "UPDATE_ANSWER",
+        payload: {
+          currentScore: -10,
+          isAnswered: "skip",
+        },
+      });
+      setTimeout(() => {
+        quizDispatch({
+          type: "INCREMENT_QUESTION",
+        });
+      }, 1000);
+    } else {
+      const next = timer - 1;
+      const id = setTimeout(() => setTimer(next), 1000);
+      return () => clearTimeout(id);
+    }
+  }, [timer]);
 
   return (
     <div className="quiz-body">
@@ -80,7 +104,8 @@ function QuizComponent() {
           <div className="quiz-right-progress">
             <ProgressBar
               completed={
-                (quizState.currentQuestion / quizState.quiz.questions.length) *
+                ((quizState.currentQuestion - 1) /
+                  quizState.quiz.questions.length) *
                 100
               }
               bgColor="#212949"
@@ -91,33 +116,27 @@ function QuizComponent() {
           <div className="quiz-right-question">
             <p>
               <span>0{quizState.currentQuestion})</span>
-              {getCurrentQuestion(quizState.currentQuestion)}
+              {getCurrentQuestion(quizState.currentQuestion)?.questionDesc}
             </p>
           </div>
           <div className="quiz-right-countdown">
-            <UrgeWithPleasureComponent />
+            {/* <UrgeWithPleasureComponent /> */}
+            {timer}
           </div>
           <div className="quiz-right-options">
-            <div className="option-top">
-              <div className="option">
-                <p>Lorem ipsum dolor sit amet.</p>
-                <i className="far fa-circle"></i>
-              </div>
-              <div className="option">
-                <p>Lorem ipsum dolor sit amet.</p>
-                <i className="far fa-circle"></i>
-              </div>
-            </div>
-            <div className="option-bottom">
-              <div className="option">
-                <p>Lorem ipsum dolor sit amet.</p>
-                <i className="far fa-circle"></i>
-              </div>
-              <div className="option">
-                <p>Lorem ipsum dolor sit amet.</p>
-                <i className="far fa-circle"></i>
-              </div>
-            </div>
+            {getCurrentQuestion(quizState.currentQuestion)?.option?.map(
+              (ele) => (
+                <QuizOptions
+                  optionDesc={ele.optionDesc}
+                  answer={ele.answer}
+                  setTimer={setTimer}
+                  timer={timer}
+                  isAnswered={
+                    getCurrentQuestion(quizState.currentQuestion)?.isAnswered
+                  }
+                />
+              )
+            )}
           </div>
           <div className="quiz-right-cta">
             <button className="quit-quiz-cta">

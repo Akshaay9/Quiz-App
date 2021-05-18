@@ -4,8 +4,7 @@ const UrgeWithPleasureComponent = () => (
   <CountdownCircleTimer
     isPlaying={true}
     onComplete={() => {
-      // do your stuff here
-      return [true, 500]; // repeat animation in 1.5 seconds
+      return [true, 1200]; // repeat animation in 1.5 seconds
     }}
     duration={10}
     size={100}

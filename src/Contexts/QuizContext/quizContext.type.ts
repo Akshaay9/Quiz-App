@@ -7,6 +7,7 @@ export type InitialState = {
   categorySelected: string;
   currentScore: number;
   currentQuestion: number;
+  timer:number,
   quiz: Quiz;
 };
 
@@ -22,15 +23,17 @@ export type ActionType =
     }
   | {
       type: "INCREMENT_QUESTION";
-      payload: {
-        currentQuestion: number;
-      };
     }
   | {
       type: "UPDATE_ANSWER";
       payload: {
         currentScore: number;
-        questionID: number;
         isAnswered: string;
       };
     };
+
+    export type ContextType = {
+      quizState: InitialState;
+      quizDispatch: (action: ActionType) => void;
+    };
+
