@@ -1,21 +1,18 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
 import { useNavigate } from "react-router-dom";
+import { setTimeout } from "timers";
 
 type iQuizOptionsProps = {
   optionDesc: string;
   isAnswered: string | undefined;
   answer: boolean;
-  timer: number;
-  setTimer: Dispatch<SetStateAction<number>>;
 };
 
 const QuizOptions: React.FC<iQuizOptionsProps> = ({
   optionDesc,
   isAnswered,
   answer,
-  timer,
-  setTimer,
 }) => {
   const { quizState, quizDispatch } = useQuizContext();
   const navigate = useNavigate();
@@ -28,7 +25,12 @@ const QuizOptions: React.FC<iQuizOptionsProps> = ({
         isAnswered: `${answer}`,
       },
     });
-
+    if (quizState.currentQuestion == 5) {
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+      return;
+    }
     setTimeout(() => {
       quizDispatch({
         type: "INCREMENT_QUESTION",

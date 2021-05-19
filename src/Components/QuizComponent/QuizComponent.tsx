@@ -1,41 +1,64 @@
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { setTimeout } from "timers";
+import { useCountdownTimer } from "use-countdown-timer";
 import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
 import { QuizQuestions } from "../../Data/Data.type";
 import "./App.css";
-import UrgeWithPleasureComponent from "./CountdownTimer";
 import QuizOptions from "./QuizOptions";
+import QuizTree from "./QuizTree";
 
 function QuizComponent() {
+  const navigate = useNavigate();
   const { quizState, quizDispatch } = useQuizContext();
-  const [timer, setTimer] = useState<number>(quizState.timer);
+  const [timer, setTimer] = useState<number>();
 
   const getCurrentQuestion = (id: number): QuizQuestions | undefined => {
     const currQuestion = quizState.quiz.questions.find((ele) => ele.id == id);
     return currQuestion;
   };
+  // var id: any;
+  // useEffect(() => {
+  //   if (timer == 0) {
+  //     quizDispatch({
+  //       type: "UPDATE_ANSWER",
+  //       payload: {
+  //         currentScore: -10,
+  //         isAnswered: "skip",
+  //       },
+  //     });
+  //     quizDispatch({
+  //       type: "INCREMENT_QUESTION",
+  //     });
+  //   } else {
+  //     const next = timer - 1;
+  //     id = setTimeout(() => setTimer(next), 1000);
+  //     return () => clearTimeout(id);
+  //   }
+  // }, [timer]);
 
-  useEffect(() => {
-    if (timer == 0) {
-      quizDispatch({
-        type: "UPDATE_ANSWER",
-        payload: {
-          currentScore: -10,
-          isAnswered: "skip",
-        },
-      });
+  // skip handler
+  const skipClickHandler = () => {
+    quizDispatch({
+      type: "UPDATE_ANSWER",
+      payload: {
+        currentScore: -10,
+        isAnswered: `skip`,
+      },
+    });
+    if (quizState.currentQuestion == 5) {
       setTimeout(() => {
-        quizDispatch({
-          type: "INCREMENT_QUESTION",
-        });
+        navigate("/");
       }, 1000);
-    } else {
-      const next = timer - 1;
-      const id = setTimeout(() => setTimer(next), 1000);
-      return () => clearTimeout(id);
+      return;
     }
-  }, [timer]);
+    setTimeout(() => {
+      quizDispatch({
+        type: "INCREMENT_QUESTION",
+      });
+    }, 1000);
+  };
 
   return (
     <div className="quiz-body">
@@ -59,36 +82,11 @@ function QuizComponent() {
           <div className="quiz-left-tree">
             <h3>Quiz Track</h3>
             <div className="tree-container">
-              <div className="tree">
-                <p>
-                  Question 1 <i className="far fa-circle"></i>
-                </p>
-                <span></span>
-              </div>
-              <div className="tree">
-                <p>
-                  Question 2 <i className="far fa-circle"></i>
-                </p>
-                <span></span>
-              </div>
-              <div className="tree">
-                <p>
-                  Question 3 <i className="far fa-circle"></i>
-                </p>
-                <span></span>
-              </div>
-              <div className="tree">
-                <p>
-                  Question 4 <i className="far fa-circle"></i>
-                </p>
-                <span></span>
-              </div>
-              <div className="tree">
-                <p>
-                  Question 5 <i className="far fa-circle"></i>
-                </p>
-              </div>
+              {quizState.quiz.questions.map((ele, index) => (
+                <QuizTree index={index} isAnswered={ele.isAnswered} />
+              ))}
             </div>
+            <h4>Finish</h4>
           </div>
         </div>
         <div className="quiz-right">
@@ -119,18 +117,13 @@ function QuizComponent() {
               {getCurrentQuestion(quizState.currentQuestion)?.questionDesc}
             </p>
           </div>
-          <div className="quiz-right-countdown">
-            {/* <UrgeWithPleasureComponent /> */}
-            {timer}
-          </div>
+          <div className="quiz-right-countdown"></div>
           <div className="quiz-right-options">
             {getCurrentQuestion(quizState.currentQuestion)?.option?.map(
               (ele) => (
                 <QuizOptions
                   optionDesc={ele.optionDesc}
                   answer={ele.answer}
-                  setTimer={setTimer}
-                  timer={timer}
                   isAnswered={
                     getCurrentQuestion(quizState.currentQuestion)?.isAnswered
                   }
@@ -142,7 +135,12 @@ function QuizComponent() {
             <button className="quit-quiz-cta">
               <i className="fas fa-power-off"></i>Quit Quiz
             </button>
-            <button className="skip-quiz-btn">Skip Quiz</button>
+            <button
+              className="skip-quiz-btn"
+              onClick={() => skipClickHandler()}
+            >
+              Skip Quiz
+            </button>
           </div>
         </div>
       </div>

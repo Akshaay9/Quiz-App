@@ -220,11 +220,28 @@ i {
   border: 1px solid rgb(218 218 218);
   display: block;
   width: 0.1rem;
-  height: 2.5rem;
+  height: 2rem;
   margin-left: 40%;
+  animation: spanLineAnimate 500ms ease;
+}
+@keyframes spanLineAnimate {
+  from {
+    /* opacity: 0; */
+    height: 0.5rem;
+  }
+
+  to {
+    height: 2rem;
+  }
 }
 .tree p i {
   padding-left: 0.5rem;
+}
+.quiz-left-tree h4 {
+  text-align: center;
+  color: #2a2f46;
+  display: block;
+  margin: auto;
 }
 
 /* mobile */
