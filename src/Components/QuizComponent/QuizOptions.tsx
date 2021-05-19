@@ -7,12 +7,16 @@ type iQuizOptionsProps = {
   optionDesc: string;
   isAnswered: string | undefined;
   answer: boolean;
+  setKey: Dispatch<SetStateAction<number>>;
+  isPlayling: Dispatch<SetStateAction<boolean>>;
 };
 
 const QuizOptions: React.FC<iQuizOptionsProps> = ({
   optionDesc,
   isAnswered,
   answer,
+  setKey,
+  isPlayling,
 }) => {
   const { quizState, quizDispatch } = useQuizContext();
   const navigate = useNavigate();
@@ -25,6 +29,7 @@ const QuizOptions: React.FC<iQuizOptionsProps> = ({
         isAnswered: `${answer}`,
       },
     });
+    isPlayling(false);
     if (quizState.currentQuestion == 5) {
       setTimeout(() => {
         navigate("/");
@@ -35,6 +40,8 @@ const QuizOptions: React.FC<iQuizOptionsProps> = ({
       quizDispatch({
         type: "INCREMENT_QUESTION",
       });
+      setKey((prevKey) => prevKey + 1);
+      isPlayling(true);
     }, 1000);
   };
 

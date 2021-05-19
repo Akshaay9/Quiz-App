@@ -1,8 +1,8 @@
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useEffect, useState } from "react";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { useNavigate } from "react-router";
 import { setTimeout } from "timers";
-import { useCountdownTimer } from "use-countdown-timer";
 import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
 import { QuizQuestions } from "../../Data/Data.type";
 import "./App.css";
@@ -12,33 +12,15 @@ import QuizTree from "./QuizTree";
 function QuizComponent() {
   const navigate = useNavigate();
   const { quizState, quizDispatch } = useQuizContext();
-  const [timer, setTimer] = useState<number>();
+  const [key, setKey] = useState<number>(0);
+  const [playling, isPlayling] = useState<boolean>(true);
 
   const getCurrentQuestion = (id: number): QuizQuestions | undefined => {
     const currQuestion = quizState.quiz.questions.find((ele) => ele.id == id);
     return currQuestion;
   };
-  // var id: any;
-  // useEffect(() => {
-  //   if (timer == 0) {
-  //     quizDispatch({
-  //       type: "UPDATE_ANSWER",
-  //       payload: {
-  //         currentScore: -10,
-  //         isAnswered: "skip",
-  //       },
-  //     });
-  //     quizDispatch({
-  //       type: "INCREMENT_QUESTION",
-  //     });
-  //   } else {
-  //     const next = timer - 1;
-  //     id = setTimeout(() => setTimer(next), 1000);
-  //     return () => clearTimeout(id);
-  //   }
-  // }, [timer]);
 
-  // skip handler
+  // skip
   const skipClickHandler = () => {
     quizDispatch({
       type: "UPDATE_ANSWER",
@@ -47,6 +29,7 @@ function QuizComponent() {
         isAnswered: `skip`,
       },
     });
+    isPlayling(false);
     if (quizState.currentQuestion == 5) {
       setTimeout(() => {
         navigate("/");
@@ -57,6 +40,8 @@ function QuizComponent() {
       quizDispatch({
         type: "INCREMENT_QUESTION",
       });
+      setKey((prevKey) => prevKey + 1);
+      isPlayling(true);
     }, 1000);
   };
 
@@ -117,7 +102,41 @@ function QuizComponent() {
               {getCurrentQuestion(quizState.currentQuestion)?.questionDesc}
             </p>
           </div>
-          <div className="quiz-right-countdown"></div>
+          <div className="quiz-right-countdown">
+            <CountdownCircleTimer
+              onComplete={() => {
+                quizDispatch({
+                  type: "UPDATE_ANSWER",
+                  payload: {
+                    currentScore: -10,
+                    isAnswered: `skip`,
+                  },
+                });
+                if (quizState.currentQuestion == 5) {
+                  setTimeout(() => {
+                    navigate("/");
+                  }, 1000);
+                  return;
+                }
+                setTimeout(() => {
+                  quizDispatch({
+                    type: "INCREMENT_QUESTION",
+                  });
+                }, 1000);
+                return [true, 1000];
+              }}
+              key={key}
+              isPlaying={playling}
+              duration={5}
+              colors={[
+                ["#004777", 0.33],
+                ["#F7B801", 0.33],
+                ["#A30000", 0.33],
+              ]}
+            >
+              {({ remainingTime }) => remainingTime}
+            </CountdownCircleTimer>
+          </div>
           <div className="quiz-right-options">
             {getCurrentQuestion(quizState.currentQuestion)?.option?.map(
               (ele) => (
@@ -127,12 +146,14 @@ function QuizComponent() {
                   isAnswered={
                     getCurrentQuestion(quizState.currentQuestion)?.isAnswered
                   }
+                  setKey={setKey}
+                  isPlayling={isPlayling}
                 />
               )
             )}
           </div>
           <div className="quiz-right-cta">
-            <button className="quit-quiz-cta">
+            <button className="quit-quiz-cta" onClick={() => navigate("/")}>
               <i className="fas fa-power-off"></i>Quit Quiz
             </button>
             <button
