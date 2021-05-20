@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
+import { QuizQuestions } from "../../Data/Data.type";
 import "./App.css";
+import DenseTable from "./LeaderBoarStats";
 
 function ResultStats() {
   const navigate = useNavigate();
   const { quizState, quizDispatch } = useQuizContext();
 
   const getANswerStats = (answer: string): number => {
-    const answerNumber = quizState.quiz.questions.filter((ele) => {
-      return ele.isAnswered == answer;
-    });
+    const answerNumber = quizState.quiz.questions.filter(
+      (ele: QuizQuestions) => {
+        return ele.isAnswered == answer;
+      }
+    );
 
     return answerNumber.length;
   };
@@ -37,7 +41,8 @@ function ResultStats() {
           </div>
 
           <div className="quiz-left-navs">
-            <h4>Score Stats</h4>
+            <h4>Leader Board</h4>
+            <h4>Score Stats and graphs</h4>
             <h4>Score Graph</h4>
           </div>
         </div>
@@ -65,6 +70,12 @@ function ResultStats() {
               <p>{getANswerStats("timeUP")}</p>
               <span>Time Up</span>
             </div>
+          </div>
+
+          <div className="quiz-right-leaderboard">
+            <h3>Leader Board</h3>
+
+            <DenseTable />
           </div>
         </div>
       </div>

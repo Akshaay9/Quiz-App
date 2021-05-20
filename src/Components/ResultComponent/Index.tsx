@@ -1,5 +1,5 @@
 import React from 'react'
-import ResultStats from "./ResultStats"
+import ResultStats from "./Result"
 function Index() {
     return (
         <div>
