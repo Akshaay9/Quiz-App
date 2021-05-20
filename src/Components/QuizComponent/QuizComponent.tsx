@@ -4,7 +4,7 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { useNavigate } from "react-router";
 import { setTimeout } from "timers";
 import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
-import { QuizQuestions } from "../../Data/Data.type";
+import { QuizOption, QuizQuestions } from "../../Data/Data.type";
 import "./App.css";
 import QuizOptions from "./QuizOptions";
 import QuizTree from "./QuizTree";
@@ -17,7 +17,9 @@ function QuizComponent() {
   const [currentTime, setCurrentTime] = useState<number>();
 
   const getCurrentQuestion = (id: number): QuizQuestions | undefined => {
-    const currQuestion = quizState.quiz.questions.find((ele:QuizQuestions) => ele.id == id);
+    const currQuestion = quizState.quiz.questions.find(
+      (ele: QuizQuestions) => ele.id == id
+    );
     return currQuestion;
   };
 
@@ -69,9 +71,11 @@ function QuizComponent() {
           <div className="quiz-left-tree">
             <h3>Quiz Track</h3>
             <div className="tree-container">
-              {quizState.quiz.questions.map((ele, index) => (
-                <QuizTree index={index} isAnswered={ele.isAnswered} />
-              ))}
+              {quizState.quiz.questions.map(
+                (ele: QuizQuestions, index: number) => (
+                  <QuizTree index={index} isAnswered={ele.isAnswered} />
+                )
+              )}
             </div>
             <h4>Finish</h4>
           </div>
@@ -130,7 +134,7 @@ function QuizComponent() {
               }}
               key={key}
               isPlaying={playling}
-              duration={5}
+              duration={55}
               colors={[
                 ["#004777", 0.33],
                 ["#F7B801", 0.33],
@@ -145,7 +149,7 @@ function QuizComponent() {
           </div>
           <div className="quiz-right-options">
             {getCurrentQuestion(quizState.currentQuestion)?.option?.map(
-              (ele) => (
+              (ele: QuizOption) => (
                 <QuizOptions
                   optionDesc={ele.optionDesc}
                   answer={ele.answer}

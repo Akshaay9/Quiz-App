@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import HomeScreen from "./Components/HomeScreen/HomeScreen";
 import QuizComponent from "./Components/QuizComponent/QuizComponent";
-import ResultComponent from "./Components/ResultComponent/ResultComponent";
+import ResultComponent from "./Components/ResultComponent/Index";
 
 function App() {
   return (
@@ -11,7 +11,6 @@ function App() {
         <Route path="/" element={<HomeScreen />} />
         <Route path="/:id" element={<QuizComponent />} />
         <Route path="/result" element={<ResultComponent />} />
-       
       </Routes>
     </BrowserRouter>
   );
