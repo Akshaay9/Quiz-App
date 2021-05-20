@@ -4,7 +4,19 @@ import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
 function LineChart() {
   const { quizState, quizDispatch } = useQuizContext();
 
-  const data = {
+  type datasets = {
+    label: string;
+    data: number[];
+    fill: boolean;
+    backgroundColor: string;
+    borderColor: string;
+  };
+  type data = {
+    labels: string[];
+    datasets: datasets[];
+  };
+
+  const data: data = {
     labels: ["question1", "question2", "question3", "question4", "question5"],
     datasets: [
       {
@@ -13,12 +25,23 @@ function LineChart() {
         fill: false,
         backgroundColor: "#06d3f6",
         borderColor: "#253577",
-        color: "red",
       },
     ],
   };
 
-  const options = {
+  type options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: boolean;
+          };
+        }
+      ];
+    };
+  };
+
+  const options: options = {
     scales: {
       yAxes: [
         {
@@ -29,9 +52,12 @@ function LineChart() {
       ],
     },
   };
+
+
   return (
     <div>
-      <Line data={data} options={options} />
+    
+      <Line type="line"  data={data} options={options} />
     </div>
   );
 }
