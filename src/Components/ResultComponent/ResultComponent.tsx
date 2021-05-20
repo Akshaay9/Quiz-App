@@ -63,7 +63,7 @@ function ResultComponent() {
   return (
     <div>
       <h1>Result page</h1>
-      <Bar data={chartData} options={options} />
+      {/* <Bar data={chartData} options={options} /> */}
     </div>
   );
 }
