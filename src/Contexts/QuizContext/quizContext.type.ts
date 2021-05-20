@@ -7,7 +7,7 @@ export type InitialState = {
   categorySelected: string;
   currentScore: number;
   currentQuestion: number;
-  timer:number,
+  timer: number;
   quiz: Quiz;
 };
 
@@ -29,11 +29,11 @@ export type ActionType =
       payload: {
         currentScore: number;
         isAnswered: string;
+        time?: number | string;
       };
     };
 
-    export type ContextType = {
-      quizState: InitialState;
-      quizDispatch: (action: ActionType) => void;
-    };
-
+export type ContextType = {
+  quizState: InitialState;
+  quizDispatch: (action: ActionType) => void;
+};

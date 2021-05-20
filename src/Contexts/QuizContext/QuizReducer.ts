@@ -32,7 +32,8 @@ export const quizReducer = (
             ele.id == state.currentQuestion
               ? {
                   ...ele,
-                  isAnswered: action.payload.isAnswered,
+                isAnswered: action.payload.isAnswered,
+                timerDuration:action.payload.time,
                 }
               : ele
           ),

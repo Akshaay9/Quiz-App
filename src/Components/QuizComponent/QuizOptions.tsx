@@ -9,6 +9,7 @@ type iQuizOptionsProps = {
   answer: boolean;
   setKey: Dispatch<SetStateAction<number>>;
   isPlayling: Dispatch<SetStateAction<boolean>>;
+  currentTime: number | undefined;
 };
 
 const QuizOptions: React.FC<iQuizOptionsProps> = ({
@@ -17,6 +18,7 @@ const QuizOptions: React.FC<iQuizOptionsProps> = ({
   answer,
   setKey,
   isPlayling,
+  currentTime,
 }) => {
   const { quizState, quizDispatch } = useQuizContext();
   const navigate = useNavigate();
@@ -27,12 +29,13 @@ const QuizOptions: React.FC<iQuizOptionsProps> = ({
       payload: {
         currentScore: answer ? 10 : -10,
         isAnswered: `${answer}`,
+        time: currentTime,
       },
     });
     isPlayling(false);
     if (quizState.currentQuestion == 5) {
       setTimeout(() => {
-        navigate("/");
+        navigate("/result");
       }, 1000);
       return;
     }

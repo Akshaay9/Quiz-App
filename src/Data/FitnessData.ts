@@ -8,6 +8,7 @@ export const FitnessQuiz: Quiz = {
       questionDesc:
         "Which exercise boosts metabolism 24 hours a day, seven days a week?",
       isAnswered: "no",
+      timerDuration: 0,
 
       option: [
         {
@@ -36,6 +37,7 @@ export const FitnessQuiz: Quiz = {
       id: 2,
       questionDesc: "What does HIIT stand for",
       isAnswered: "no",
+      timerDuration: 0,
 
       option: [
         {
@@ -65,6 +67,7 @@ export const FitnessQuiz: Quiz = {
       questionDesc:
         "What is the amount of calories one has to burn in ordered to reduce 1kg of fat from his body",
       isAnswered: "no",
+      timerDuration: 0,
 
       option: [
         {
@@ -93,7 +96,7 @@ export const FitnessQuiz: Quiz = {
       id: 4,
       questionDesc: "What does BMR stands for?",
       isAnswered: "no",
-
+      timerDuration: 0,
       option: [
         {
           id: 41,
@@ -121,7 +124,7 @@ export const FitnessQuiz: Quiz = {
       id: 5,
       questionDesc: "Which of these nutrients helps to build lean muscle",
       isAnswered: "no",
-
+      timerDuration: 0,
       option: [
         {
           id: 41,

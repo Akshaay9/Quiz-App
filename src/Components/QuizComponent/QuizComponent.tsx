@@ -14,9 +14,10 @@ function QuizComponent() {
   const { quizState, quizDispatch } = useQuizContext();
   const [key, setKey] = useState<number>(0);
   const [playling, isPlayling] = useState<boolean>(true);
+  const [currentTime, setCurrentTime] = useState<number>();
 
   const getCurrentQuestion = (id: number): QuizQuestions | undefined => {
-    const currQuestion = quizState.quiz.questions.find((ele) => ele.id == id);
+    const currQuestion = quizState.quiz.questions.find((ele:QuizQuestions) => ele.id == id);
     return currQuestion;
   };
 
@@ -27,12 +28,13 @@ function QuizComponent() {
       payload: {
         currentScore: -10,
         isAnswered: `skip`,
+        time: `skip`,
       },
     });
     isPlayling(false);
     if (quizState.currentQuestion == 5) {
       setTimeout(() => {
-        navigate("/");
+        navigate("/result");
       }, 1000);
       return;
     }
@@ -110,11 +112,12 @@ function QuizComponent() {
                   payload: {
                     currentScore: -10,
                     isAnswered: `skip`,
+                    time: `skip`,
                   },
                 });
                 if (quizState.currentQuestion == 5) {
                   setTimeout(() => {
-                    navigate("/");
+                    navigate("/result");
                   }, 1000);
                   return;
                 }
@@ -134,7 +137,10 @@ function QuizComponent() {
                 ["#A30000", 0.33],
               ]}
             >
-              {({ remainingTime }) => remainingTime}
+              {({ remainingTime }) => {
+                setCurrentTime(remainingTime);
+                return remainingTime;
+              }}
             </CountdownCircleTimer>
           </div>
           <div className="quiz-right-options">
@@ -148,6 +154,7 @@ function QuizComponent() {
                   }
                   setKey={setKey}
                   isPlayling={isPlayling}
+                  currentTime={currentTime}
                 />
               )
             )}
