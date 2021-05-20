@@ -58,7 +58,7 @@ const QuizOptions: React.FC<iQuizOptionsProps> = ({
       </>
     );
   }
-  if (isAnswered == "true" || isAnswered == "skip" || isAnswered == "false") {
+  if (isAnswered == "true" || isAnswered == "skip" || isAnswered == "false" || isAnswered == "timeUP") {
     return (
       <>
         <div

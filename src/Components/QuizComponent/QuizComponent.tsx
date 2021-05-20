@@ -23,6 +23,11 @@ function QuizComponent() {
     return currQuestion;
   };
 
+  
+
+
+  // get answer stats
+
   // skip
   const skipClickHandler = () => {
     quizDispatch({
@@ -115,8 +120,8 @@ function QuizComponent() {
                   type: "UPDATE_ANSWER",
                   payload: {
                     currentScore: -10,
-                    isAnswered: `skip`,
-                    time: `skip`,
+                    isAnswered: `timeUP`,
+                    time: `timeUP`,
                   },
                 });
                 if (quizState.currentQuestion == 5) {
@@ -134,7 +139,7 @@ function QuizComponent() {
               }}
               key={key}
               isPlaying={playling}
-              duration={55}
+              duration={5}
               colors={[
                 ["#004777", 0.33],
                 ["#F7B801", 0.33],

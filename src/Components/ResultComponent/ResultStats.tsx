@@ -7,6 +7,14 @@ function ResultStats() {
   const navigate = useNavigate();
   const { quizState, quizDispatch } = useQuizContext();
 
+  const getANswerStats = (answer: string): number => {
+    const answerNumber = quizState.quiz.questions.filter((ele) => {
+      return ele.isAnswered == answer;
+    });
+
+    return answerNumber.length;
+  };
+
   return (
     <div className="quiz-body">
       <div className="quiz-main">
@@ -23,11 +31,42 @@ function ResultStats() {
           </div>
           <div className="quiz-left-score">
             <h3>
-              Final Score : <span>{quizState.currentScore}</span>
+              Final Score :{" "}
+              <span style={{ color: "#06d3f6" }}>{quizState.currentScore}</span>
             </h3>
           </div>
+
+          <div className="quiz-left-navs">
+            <h4>Score Stats</h4>
+            <h4>Score Graph</h4>
+          </div>
         </div>
-        <div className="quiz-right"></div>
+        <div className="quiz-right">
+          {/* quiz right top */}
+
+          <div className="quiz-right-top-stats">
+            <div className="number-stats" style={{ color: "#253577" }}>
+              <p>{quizState.quiz.questions.length}</p>
+              <span>Total Questions</span>
+            </div>
+            <div className="number-stats" style={{ color: "green" }}>
+              <p>{getANswerStats("true")}</p>
+              <span>True</span>
+            </div>
+            <div className="number-stats" style={{ color: "rgb(175 53 53)" }}>
+              <p>{getANswerStats("false")}</p>
+              <span>False</span>
+            </div>
+            <div className="number-stats" style={{ color: "#253577" }}>
+              <p>{getANswerStats("skip")}</p>
+              <span>Skip</span>
+            </div>
+            <div className="number-stats" style={{ color: "#253577" }}>
+              <p>{getANswerStats("timeUP")}</p>
+              <span>Time Up</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
