@@ -4,6 +4,7 @@ import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
 import { QuizQuestions } from "../../Data/Data.type";
 import "./App.css";
 import DenseTable from "./LeaderBoarStats";
+import ScoreStatsandgraph from "./ScoreStatsandgraph";
 
 function ResultStats() {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ function ResultStats() {
 
     return answerNumber.length;
   };
+
 
   return (
     <div className="quiz-body">
@@ -49,7 +51,7 @@ function ResultStats() {
         <div className="quiz-right">
           {/* quiz right top */}
 
-          <div className="quiz-right-top-stats">
+          {/* <div className="quiz-right-top-stats">
             <div className="number-stats" style={{ color: "#253577" }}>
               <p>{quizState.quiz.questions.length}</p>
               <span>Total Questions</span>
@@ -70,13 +72,13 @@ function ResultStats() {
               <p>{getANswerStats("timeUP")}</p>
               <span>Time Up</span>
             </div>
-          </div>
-
+          </div> */}
+{/* 
           <div className="quiz-right-leaderboard">
             <h3>Leader Board</h3>
-
             <DenseTable />
-          </div>
+          </div> */}
+          <ScoreStatsandgraph />
         </div>
       </div>
     </div>

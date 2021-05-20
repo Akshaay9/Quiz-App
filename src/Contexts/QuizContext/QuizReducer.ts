@@ -26,14 +26,15 @@ export const quizReducer = (
       return {
         ...state,
         currentScore: state.currentScore + action.payload.currentScore,
+        scoreData: [...state.scoreData, action.payload.scoreData],
         quiz: {
           ...state.quiz,
           questions: state.quiz.questions.map((ele: QuizQuestions) =>
             ele.id == state.currentQuestion
               ? {
                   ...ele,
-                isAnswered: action.payload.isAnswered,
-                timerDuration:action.payload.time,
+                  isAnswered: action.payload.isAnswered,
+                  timerDuration: action.payload.time,
                 }
               : ele
           ),

@@ -6,6 +6,7 @@ export type InitialState = {
   userAvatar: string;
   categorySelected: string;
   currentScore: number;
+  scoreData: number[];
   currentQuestion: number;
   timer: number;
   quiz: Quiz;
@@ -29,7 +30,8 @@ export type ActionType =
       payload: {
         currentScore: number;
         isAnswered: string;
-        time?: number | string;
+        time: number | string;
+        scoreData: number ;
       };
     };
 

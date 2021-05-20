@@ -10,6 +10,7 @@ const intitalState: InitialState = {
   currentScore: 0,
   currentQuestion: 1,
   timer: 10,
+  scoreData:[],
   quiz: FitnessQuiz,
 };
 

@@ -23,9 +23,6 @@ function QuizComponent() {
     return currQuestion;
   };
 
-  
-
-
   // get answer stats
 
   // skip
@@ -36,6 +33,7 @@ function QuizComponent() {
         currentScore: -10,
         isAnswered: `skip`,
         time: `skip`,
+        scoreData: quizState.currentScore - 10,
       },
     });
     isPlayling(false);
@@ -122,6 +120,7 @@ function QuizComponent() {
                     currentScore: -10,
                     isAnswered: `timeUP`,
                     time: `timeUP`,
+                    scoreData: quizState.currentScore - 10,
                   },
                 });
                 if (quizState.currentQuestion == 5) {
@@ -163,7 +162,7 @@ function QuizComponent() {
                   }
                   setKey={setKey}
                   isPlayling={isPlayling}
-                  currentTime={currentTime}
+                  currentTime={currentTime!}
                 />
               )
             )}

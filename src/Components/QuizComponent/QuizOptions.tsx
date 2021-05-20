@@ -9,7 +9,7 @@ type iQuizOptionsProps = {
   answer: boolean;
   setKey: Dispatch<SetStateAction<number>>;
   isPlayling: Dispatch<SetStateAction<boolean>>;
-  currentTime: number | undefined;
+  currentTime: number | string;
 };
 
 const QuizOptions: React.FC<iQuizOptionsProps> = ({
@@ -30,6 +30,9 @@ const QuizOptions: React.FC<iQuizOptionsProps> = ({
         currentScore: answer ? 10 : -10,
         isAnswered: `${answer}`,
         time: currentTime,
+        scoreData: answer
+          ? quizState.currentScore + 10
+          : quizState.currentScore - 10,
       },
     });
     isPlayling(false);
@@ -58,7 +61,12 @@ const QuizOptions: React.FC<iQuizOptionsProps> = ({
       </>
     );
   }
-  if (isAnswered == "true" || isAnswered == "skip" || isAnswered == "false" || isAnswered == "timeUP") {
+  if (
+    isAnswered == "true" ||
+    isAnswered == "skip" ||
+    isAnswered == "false" ||
+    isAnswered == "timeUP"
+  ) {
     return (
       <>
         <div
