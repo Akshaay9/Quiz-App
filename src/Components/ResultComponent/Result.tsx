@@ -5,7 +5,7 @@ import { QuizQuestions } from "../../Data/Data.type";
 import "./App.css";
 import DenseTable from "./LeaderBoarStats";
 import ScoreStatsandgraph from "./ScoreStatsandgraph";
-import AnswerStatsAndGraph from "./AnswerStatsAndGraph"
+import AnswerStatsAndGraph from "./AnswerStatsAndGraph";
 import Timinggraph from "./Timinggraph";
 
 function ResultStats() {
@@ -137,10 +137,37 @@ function ResultStats() {
                 <h3>Leader Board</h3>
                 <DenseTable />
               </div>
+
+              <button className="btn-stats" onClick={() => setSHowNav("scorestats")}>
+                Check Score Stats
+                <i className="fas fa-chevron-right"></i>
+              </button>
             </>
           )}
-          {navForResult == "scorestats" && <ScoreStatsandgraph />}
-          {navForResult == "answestats" && <AnswerStatsAndGraph />}
+          {navForResult == "scorestats" && (
+            <>
+              <ScoreStatsandgraph />
+              <button
+                className="btn-stats"
+                onClick={() => setSHowNav("answestats")}
+              >
+                Check Answer Stats
+                <i className="fas fa-chevron-right"></i>
+              </button>
+            </>
+          )}
+          {navForResult == "answestats" && (
+            <>
+              <AnswerStatsAndGraph />
+              <button
+                className="btn-stats answer-stats"
+                onClick={() => setSHowNav("timingstats")}
+              >
+                Check Timing Stats
+                <i className="fas fa-chevron-right"></i>
+              </button>
+            </>
+          )}
           {navForResult == "timingstats" && <Timinggraph />}
         </div>
       </div>

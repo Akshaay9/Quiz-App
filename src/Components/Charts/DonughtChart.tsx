@@ -1,8 +1,8 @@
-import React from "react";
+
 import { Doughnut } from "react-chartjs-2";
 import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
 import { QuizQuestions } from "../../Data/Data.type";
-
+import "./App.css"
 const DoughnutChart = () => {
   const { quizState, quizDispatch } = useQuizContext();
 
@@ -51,7 +51,7 @@ const DoughnutChart = () => {
     ],
   };
   return (
-    <div style={{ width: "60%", display: "block", margin: "auto" }}>
+    <div className="doughnutChart" >
       <Doughnut type="Doughnut" data={data} />
     </div>
   );

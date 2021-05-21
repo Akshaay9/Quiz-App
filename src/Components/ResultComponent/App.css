@@ -80,6 +80,46 @@
   padding: 1rem;
 }
 /* bar chart */
+.btn-stats {
+  display: block;
+  margin-left: auto;
+  margin-top: 2rem;
+  margin-right: 1rem;
+  padding: 0.5rem 2rem;
+  background-color: #2fb8d0;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-weight: bold;
+  border-radius: 0.4rem;
+  position: relative;
+}
+.answer-stats{
+  margin-top: .7rem;
+  margin-right: 2rem;
+}
+.btn-stats i {
+ position: absolute;
+top: 7px;
+
+font-size: 1.2rem;
+  animation: name duration timing-function delay iteration-count direction
+    fill-mode;
+  animation: btnAnimation 1000ms ease-in-out infinite;
+}
+@keyframes btnAnimation {
+  0% {
+    right: -5px;
+  }
+  50% {
+    right: 1px;
+  }
+  100%{
+    right: -5px;
+  }
+}
 
 @media screen and (max-width: 1000px) {
   .quiz-right-top-stats {

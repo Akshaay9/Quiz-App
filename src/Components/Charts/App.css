@@ -1,0 +1,16 @@
+.doughnutChart {
+  width: 58%;
+  display: block;
+  margin: auto;
+}
+@media screen and (max-width: 1000px) {
+  .doughnutChart {
+    width: 100%;
+  }
+  .barchart {
+    width: 100%;
+
+    display: block;
+    margin: auto;
+  }
+}

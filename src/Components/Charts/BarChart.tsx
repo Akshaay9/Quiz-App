@@ -51,9 +51,9 @@ const newData=quizState.quiz.questions.map((ele:QuizQuestions) =>ele.timerDurati
     },
   };
   return (
-    <>
+    <div className="barchart">
       <Bar type="bar" data={data} options={options} />
-    </>
+    </div>
   );
 }
 
