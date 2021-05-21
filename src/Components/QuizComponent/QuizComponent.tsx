@@ -137,10 +137,12 @@ function QuizComponent() {
                 return [true, 1000];
               }}
               key={key}
+              size={120}
+              strokeWidth={7}
               isPlaying={playling}
               duration={5}
               colors={[
-                ["#004777", 0.33],
+                ["#141a33", 0.33],
                 ["#F7B801", 0.33],
                 ["#A30000", 0.33],
               ]}
@@ -172,7 +174,8 @@ function QuizComponent() {
               <i className="fas fa-power-off"></i>Quit Quiz
             </button>
             <button
-              className="skip-quiz-btn"
+              className="skip-quiz-btn disabled-btn"
+              disabled={!playling}
               onClick={() => skipClickHandler()}
             >
               Skip Quiz
