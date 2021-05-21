@@ -6,12 +6,13 @@ import "./App.css";
 import DenseTable from "./LeaderBoarStats";
 import ScoreStatsandgraph from "./ScoreStatsandgraph";
 import AnswerStatsAndGraph from "./AnswerStatsAndGraph"
+import Timinggraph from "./Timinggraph";
 
 function ResultStats() {
   const navigate = useNavigate();
   const { quizState, quizDispatch } = useQuizContext();
 
-  const [navForResult, setSHowNav] = useState("answestats");
+  const [navForResult, setSHowNav] = useState("leaderboard");
 
   const getANswerStats = (answer: string): number => {
     const answerNumber = quizState.quiz.questions.filter(
@@ -140,6 +141,7 @@ function ResultStats() {
           )}
           {navForResult == "scorestats" && <ScoreStatsandgraph />}
           {navForResult == "answestats" && <AnswerStatsAndGraph />}
+          {navForResult == "timingstats" && <Timinggraph />}
         </div>
       </div>
     </div>

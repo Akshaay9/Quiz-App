@@ -32,7 +32,7 @@ function QuizComponent() {
       payload: {
         currentScore: -10,
         isAnswered: `skip`,
-        time: `skip`,
+        time: -5,
         scoreData: quizState.currentScore - 10,
       },
     });
@@ -119,7 +119,7 @@ function QuizComponent() {
                   payload: {
                     currentScore: -10,
                     isAnswered: `timeUP`,
-                    time: `timeUP`,
+                    time: -5,
                     scoreData: quizState.currentScore - 10,
                   },
                 });
