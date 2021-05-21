@@ -79,6 +79,8 @@
   border-radius: 1rem;
   padding: 1rem;
 }
+/* bar chart */
+
 @media screen and (max-width: 1000px) {
   .quiz-right-top-stats {
     width: 99%;

@@ -2,7 +2,7 @@ import { Line } from "react-chartjs-2";
 import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
 
 function LineChart() {
-  const { quizState, quizDispatch } = useQuizContext();
+  const { quizState } = useQuizContext();
 
   type datasets = {
     label: string;

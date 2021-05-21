@@ -5,10 +5,13 @@ import { QuizQuestions } from "../../Data/Data.type";
 import "./App.css";
 import DenseTable from "./LeaderBoarStats";
 import ScoreStatsandgraph from "./ScoreStatsandgraph";
+import AnswerStatsAndGraph from "./AnswerStatsAndGraph"
 
 function ResultStats() {
   const navigate = useNavigate();
   const { quizState, quizDispatch } = useQuizContext();
+
+  const [navForResult, setSHowNav] = useState("answestats");
 
   const getANswerStats = (answer: string): number => {
     const answerNumber = quizState.quiz.questions.filter(
@@ -19,7 +22,6 @@ function ResultStats() {
 
     return answerNumber.length;
   };
-
 
   return (
     <div className="quiz-body">
@@ -43,42 +45,101 @@ function ResultStats() {
           </div>
 
           <div className="quiz-left-navs">
-            <h4>Leader Board</h4>
-            <h4>Score Stats and graphs</h4>
-            <h4>Score Graph</h4>
+            <h4
+              style={
+                navForResult == "leaderboard"
+                  ? {
+                      backgroundColor: "#141d42",
+                      borderLeft: "1px solid #8d909c",
+                      borderRight: "1px solid #8d909c",
+                    }
+                  : {}
+              }
+              onClick={() => setSHowNav("leaderboard")}
+            >
+              Leader Board
+            </h4>
+            <h4
+              style={
+                navForResult == "scorestats"
+                  ? {
+                      backgroundColor: "#141d42",
+                      borderLeft: "1px solid #8d909c",
+                      borderRight: "1px solid #8d909c",
+                    }
+                  : {}
+              }
+              onClick={() => setSHowNav("scorestats")}
+            >
+              Score Stats and graphs
+            </h4>
+            <h4
+              style={
+                navForResult == "answestats"
+                  ? {
+                      backgroundColor: "#141d42",
+                      borderLeft: "1px solid #8d909c",
+                      borderRight: "1px solid #8d909c",
+                    }
+                  : {}
+              }
+              onClick={() => setSHowNav("answestats")}
+            >
+              Answer stats and Graph
+            </h4>
+            <h4
+              style={
+                navForResult == "timingstats"
+                  ? {
+                      backgroundColor: "#141d42",
+                      borderLeft: "1px solid #8d909c",
+                      borderRight: "1px solid #8d909c",
+                    }
+                  : {}
+              }
+              onClick={() => setSHowNav("timingstats")}
+            >
+              Timing stats and Graph
+            </h4>
           </div>
         </div>
         <div className="quiz-right">
-          {/* quiz right top */}
+          {navForResult == "leaderboard" && (
+            <>
+              <div className="quiz-right-top-stats">
+                <div className="number-stats" style={{ color: "#253577" }}>
+                  <p>{quizState.quiz.questions.length}</p>
+                  <span>Total Questions</span>
+                </div>
+                <div className="number-stats" style={{ color: "green" }}>
+                  <p>{getANswerStats("true")}</p>
+                  <span>True</span>
+                </div>
+                <div
+                  className="number-stats"
+                  style={{ color: "rgb(175 53 53)" }}
+                >
+                  <p>{getANswerStats("false")}</p>
+                  <span>False</span>
+                </div>
+                <div className="number-stats" style={{ color: "#253577" }}>
+                  <p>{getANswerStats("skip")}</p>
+                  <span>Skip</span>
+                </div>
+                <div className="number-stats" style={{ color: "#253577" }}>
+                  <p>{getANswerStats("timeUP")}</p>
+                  <span>Time Up</span>
+                </div>
+              </div>
 
-          {/* <div className="quiz-right-top-stats">
-            <div className="number-stats" style={{ color: "#253577" }}>
-              <p>{quizState.quiz.questions.length}</p>
-              <span>Total Questions</span>
-            </div>
-            <div className="number-stats" style={{ color: "green" }}>
-              <p>{getANswerStats("true")}</p>
-              <span>True</span>
-            </div>
-            <div className="number-stats" style={{ color: "rgb(175 53 53)" }}>
-              <p>{getANswerStats("false")}</p>
-              <span>False</span>
-            </div>
-            <div className="number-stats" style={{ color: "#253577" }}>
-              <p>{getANswerStats("skip")}</p>
-              <span>Skip</span>
-            </div>
-            <div className="number-stats" style={{ color: "#253577" }}>
-              <p>{getANswerStats("timeUP")}</p>
-              <span>Time Up</span>
-            </div>
-          </div> */}
-{/* 
-          <div className="quiz-right-leaderboard">
-            <h3>Leader Board</h3>
-            <DenseTable />
-          </div> */}
-          <ScoreStatsandgraph />
+              <div className="quiz-right-leaderboard">
+                <h3>Leader Board</h3>
+                <DenseTable />
+              </div>
+            </>
+          )}
+          {navForResult == "scorestats" && <ScoreStatsandgraph />}
+          {navForResult == "answestats" && <AnswerStatsAndGraph />}
         </div>
       </div>
     </div>
