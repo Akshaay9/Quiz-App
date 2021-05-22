@@ -4,13 +4,12 @@ import { InitialState, ContextType } from "./QuizContext.type";
 import { quizReducer } from "./QuizReducer";
 
 const intitalState: InitialState = {
-  userName: "akshay",
-  userAvatar: "https://avatars.dicebear.com/api/male/:seed.svg",
+  userName: "",
+  userAvatar: "",
   categorySelected: "fitness",
   currentScore: 0,
   currentQuestion: 1,
-  timer: 10,
-  scoreData:[],
+  scoreData: [],
   quiz: FitnessQuiz,
 };
 

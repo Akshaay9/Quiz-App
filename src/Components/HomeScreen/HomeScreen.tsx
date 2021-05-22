@@ -4,13 +4,29 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import { useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
+import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
 
-function HomeScreen() {
+function HomeScreen({
+  setOpen,
+}: {
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}) {
   const navigate = useNavigate();
+  const { quizState, quizDispatch } = useQuizContext();
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-   navigate("/1")
+    quizDispatch({
+      type: "INITIALIZE_QUIZ",
+      payload: {
+        userName: name,
+        userAvatar: currency,
+      },
+    });
+
+    setOpen(true);
+    // navigate("/quiz");
   };
 
   const currencies = [
@@ -19,16 +35,16 @@ function HomeScreen() {
       label: "male",
     },
     {
-      value: "EUR",
+      value: "female",
       label: "female",
     },
     {
-      value: "avtaaars",
-      label: "avtaaars",
+      value: "gridy",
+      label: "gridy",
     },
     {
-      value: "botts",
-      label: "botts",
+      value: "bottts",
+      label: "bottts",
     },
     {
       value: "micah",
@@ -42,19 +58,19 @@ function HomeScreen() {
 
   const quizzes = [
     {
-      value: "fitness",
-      label: "fitness",
+      value: "Yes",
+      label: "Yes",
     },
     {
-      value: "yoga",
-      label: "yoga",
+      value: "No",
+      label: "No",
     },
     {
-      value: "calories",
-      label: "calories",
+      value: "on and off",
+      label: "on and off",
     },
   ];
-
+  const [name, setName] = useState("");
   const [currency, setCurrency] = useState("");
   const [currency1, setCurrency1] = useState("");
 
@@ -98,7 +114,15 @@ function HomeScreen() {
           onSubmit={(e: React.FormEvent<HTMLFormElement>) => submitHandler(e)}
         >
           <div className="input-top">
-            <TextField id="standard-basic" label="Name" required />
+            <TextField
+              id="standard-basic"
+              label="Name"
+              value={name}
+              onChange={(
+                e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+              ) => setName(e.target.value)}
+              required
+            />
             <TextField
               id="standard-select-currency"
               select
@@ -120,11 +144,10 @@ function HomeScreen() {
               id="standard-select-currency"
               select
               required
-              label="Category"
+              label="Fitness Freak ?"
               value={currency1}
               onChange={handleChange2}
-           
-              helperText="Please select your category"
+              helperText="Are u a fitness freak?"
             >
               {quizzes.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
@@ -134,7 +157,7 @@ function HomeScreen() {
             </TextField>
           </div>
           <div className="login-cta">
-         <button>Take me In</button>
+            <button>Take me In</button>
           </div>
         </form>
       </div>

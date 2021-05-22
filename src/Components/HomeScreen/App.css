@@ -60,33 +60,119 @@
   justify-content: center;
   align-items: center;
 }
-.login-cta button{
-    display: block;
-    margin: auto;
-    margin-top: 1.5rem;
-    cursor: pointer;
-    border-radius: 5px;
-    font-family: sans-serif;
-    font-weight: 550;
-    background-color: rgb(41 40 40);
-    color: white;
-    outline: none;
-    border: none;
-    padding: .6rem 0rem;
-    border: 1px solid rgb(56, 56, 56);
-    width: 70% !important;
+.login-cta button {
+  display: block;
+  margin: auto;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: sans-serif;
+  font-weight: 550;
+  background-color: rgb(41 40 40);
+  color: white;
+  outline: none;
+  border: none;
+  padding: 0.6rem 0rem;
+  border: 1px solid rgb(56, 56, 56);
+  width: 70% !important;
 }
-.login-cta button:hover{
- color: black;
- background-color: rgb(229 229 229 / 60%);
+.login-cta button:hover {
+  color: black;
+  background-color: rgb(229 229 229 / 60%);
 }
+/*  */
+/* modal design */
+.modal-screen {
+  width: 25rem;
+  padding: 1rem;
+  border-radius: 2rem;
+}
+.modal-screen-top {
+  display: flex;
+  align-items: flex-end;
+  border-radius: 5rem;
+  background-color: #a09a911c;
+  width: 40%;
+}
+.modal-screen-top h3 {
+  padding-left: 0.7rem;
+  font-family: sans-serif;
+  text-transform: capitalize;
+}
+
+.modal-screen-top img {
+  width: 29%;
+  border-radius: 50%;
+}
+.modal-screen-heading {
+  margin-top: 1.4rem;
+  font-family: sans-serif;
+}
+.modal-screen-heading h2 {
+  padding-bottom: 0.5rem;
+  font-weight: bolder;
+}
+/* modal-screen-images */
+.modal-screen-body-one,.modal-screen-body-two{
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content:space-between;
+  height: 6rem;
+  margin-top: 1rem;
+}
+.modal-screen-img1,.modal-screen-img2{
+ align-self:flex-start;
+ /* border: 1px solid red; */
+ cursor: pointer;
+ position: relative;
+ padding: 1rem 4rem;
+ border-radius: 3rem;
+ font-family: sans-serif;
+ background-color: #556bf4d9;
+ color: aliceblue;
+
+}
+
+.modal-screen-img1:hover,.modal-screen-img2:hover{
+  transition:all 200ms ease-in-out;
+  transform: scale(1.09);
+}
+
+.modal-screen-img2{
+ align-self:flex-end;
+ background-color: #ffa500ad;
+}
+.img3{
+  background-color: #ea4c89bd;
+  padding: .9rem 3.5rem;
+}
+.img4{
+  padding: .9rem 3.5rem;
+  background-color:#ff4f58
+}
+
 @media screen and (max-width: 1000px) {
-    .home-screen-left {
-        display: none;
-        /* border: 1px solid red; */
-      }
-      .home-screen-right {
-        width: 98%;
-       
-      }
+  .home-screen-left {
+    display: none;
+    /* border: 1px solid red; */
+  }
+  .home-screen-right {
+    width: 98%;
+  }
+  .modal-screen {
+    width: 22rem;
+    padding: 1rem;
+    border-radius: 2rem;
+  }
+  .img3{
+    background-color: #ea4c89bd;
+    padding: .9rem 2.7rem;
+  }
+  .img4{
+    padding: .9rem 3.5rem;
+    background-color:#ff4f58
+  }
+  .modal-screen-img2{
+    padding: .9rem 3.2rem;
+   }
 }

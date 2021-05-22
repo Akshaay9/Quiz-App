@@ -1,4 +1,4 @@
-import { Quiz, QuizQuestions } from "../../Data/Data.type";
+import { QuizQuestions } from "../../Data/Data.type";
 import { FitnessQuiz } from "../../Data/FitnessData";
 import { ActionType, InitialState } from "./QuizContext.type";
 
@@ -12,7 +12,11 @@ export const quizReducer = (
       return {
         ...state,
         userName: action.payload.userName,
-        userAvatar: action.payload.userAvatar,
+        userAvatar: `https://avatars.dicebear.com/api/${action.payload.userAvatar}/:seed.svg`,
+      };
+    case "INITIALIZE_CATEGORY":
+      return {
+        ...state,
         categorySelected: action.payload.categorySelected,
         quiz: FitnessQuiz,
       };
@@ -20,8 +24,8 @@ export const quizReducer = (
       return {
         ...state,
         currentQuestion: state.currentQuestion + 1,
-        timer: 10,
       };
+
     case "UPDATE_ANSWER":
       return {
         ...state,

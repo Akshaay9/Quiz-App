@@ -8,16 +8,20 @@ export type InitialState = {
   currentScore: number;
   scoreData: number[];
   currentQuestion: number;
-  timer: number;
   quiz: Quiz;
 };
 
 export type ActionType =
   | {
-      type: "INITIALIZE_QUIZ";
+    type: "INITIALIZE_QUIZ";
+    payload: {
+      userName: string;
+      userAvatar: string;
+    };
+  }
+  | {
+      type: "INITIALIZE_CATEGORY";
       payload: {
-        userName: string;
-        userAvatar: string;
         categorySelected: string;
         quiz: Quiz;
       };
@@ -31,7 +35,7 @@ export type ActionType =
         currentScore: number;
         isAnswered: string;
         time: number | string;
-        scoreData: number ;
+        scoreData: number;
       };
     };
 
