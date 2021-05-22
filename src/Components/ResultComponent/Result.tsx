@@ -103,6 +103,20 @@ function ResultStats() {
               Timing stats and Graph
             </h4>
           </div>
+          <div className="btn-result">
+            <button className="btn-result-1" onClick={() => {
+              quizDispatch({ type: "CLEAR_QUIZ_CATEGORY" })
+              navigate("/",{state:{from:"result"}})
+            }}
+            >Change Category</button>
+            <button className="btn-result-1 btn-result-2" onClick={() => {
+              quizDispatch({ type: "CLEAR_QUIZ" });
+              navigate("/")
+            }}>
+              <i className="fas fa-power-off"></i>Quit Quiz
+            </button>
+</div>
+
         </div>
         <div className="quiz-right">
           {navForResult == "leaderboard" && (

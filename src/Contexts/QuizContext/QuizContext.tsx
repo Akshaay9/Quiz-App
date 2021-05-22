@@ -6,7 +6,7 @@ import { quizReducer } from "./QuizReducer";
 const intitalState: InitialState = {
   userName: "",
   userAvatar: "",
-  categorySelected: "fitness",
+  categorySelected: "",
   currentScore: 0,
   currentQuestion: 1,
   scoreData: [],

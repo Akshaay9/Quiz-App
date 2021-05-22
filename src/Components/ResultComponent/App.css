@@ -26,7 +26,7 @@
   padding-bottom: 0.3rem;
 }
 .quiz-left-navs {
-  padding: 2rem 0rem;
+  padding: 1rem 0rem;
 }
 
 .quiz-left-navs h4 {
@@ -95,16 +95,17 @@
   font-weight: bold;
   border-radius: 0.4rem;
   position: relative;
+ 
 }
-.answer-stats{
-  margin-top: .7rem;
+.answer-stats {
+  margin-top: 0.7rem;
   margin-right: 2rem;
 }
 .btn-stats i {
- position: absolute;
-top: 7px;
+  position: absolute;
+  top: 7px;
 
-font-size: 1.2rem;
+  font-size: 1.2rem;
   animation: name duration timing-function delay iteration-count direction
     fill-mode;
   animation: btnAnimation 1000ms ease-in-out infinite;
@@ -116,9 +117,29 @@ font-size: 1.2rem;
   50% {
     right: 1px;
   }
-  100%{
+  100% {
     right: -5px;
   }
+}
+
+.btn-result-1 {
+  border: none;
+  outline: none;
+  background-color: #2fb8d0 !important;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-family: sans-serif;
+  font-weight: bold;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  width: 90%;
+  display: block;
+  margin: auto;
+  margin-bottom:1rem;
+}
+.btn-result-2 {
+  background-color: #141d42 !important;
 }
 
 @media screen and (max-width: 1000px) {

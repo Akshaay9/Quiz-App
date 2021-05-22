@@ -1,25 +1,39 @@
 import React, { MouseEvent, useState } from "react";
+import { useNavigate } from "react-router";
 import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
+import { FitnessQuiz } from "../../Data/FitnessData";
+import { YOgaQUiz } from "../../Data/YogaData";
 
 function ModalScreen() {
   const { quizState, quizDispatch } = useQuizContext();
-  const [category, setCategory] = useState("");
+  const navigate = useNavigate();
 
-  const categoryHandler1 = (e: any) => {
-    console.log("fitness");
-
+  const categoryHandler1 = () => {
+    quizDispatch({
+      type: "INITIALIZE_CATEGORY",
+      payload: {
+        categorySelected: "fitness",
+        quiz: FitnessQuiz,
+      },
+    });
+    navigate("/quiz");
   };
-  const categoryHandler2 = (e: any) => {
-    console.log("yoga");
 
+  const categoryHandler2 = () => {
+    quizDispatch({
+      type: "INITIALIZE_CATEGORY",
+      payload: {
+        categorySelected: "yoga",
+        quiz: YOgaQUiz,
+      },
+    });
+    navigate("/quiz");
   };
-  const categoryHandler3 = (e: any) => {
+  const categoryHandler3 = () => {
     console.log("meditation");
-
   };
-  const categoryHandler4 = (e: any) => {
+  const categoryHandler4 = () => {
     console.log("calories");
-
   };
 
   return (
@@ -34,27 +48,23 @@ function ModalScreen() {
       </div>
       <div className="modal-screen-body">
         <div className="modal-screen-body-one">
-          <div
-            className="modal-screen-img1"
-            onClick={(e) => categoryHandler1(e)}
-          >
+          <div className="modal-screen-img1" onClick={() => categoryHandler1()}>
             <h4>Fitness</h4>
           </div>
-          <div
-            className="modal-screen-img2"
-            onClick={(e) => categoryHandler2(e)}
-          >
+          <div className="modal-screen-img2" onClick={() => categoryHandler2()}>
             <h4>Yoga</h4>
           </div>
         </div>
         <div className="modal-screen-body-two">
-          <div className="modal-screen-img1 img3"
-            onClick={(e) => categoryHandler3(e)}
+          <div
+            className="modal-screen-img1 img3"
+            onClick={() => categoryHandler3()}
           >
             <h4>Meditation</h4>
           </div>
-          <div className="modal-screen-img2 img4"
-            onClick={(e) => categoryHandler4(e)}
+          <div
+            className="modal-screen-img2 img4"
+            onClick={() => categoryHandler4()}
           >
             <h4>Calorie</h4>
           </div>

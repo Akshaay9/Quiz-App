@@ -30,6 +30,12 @@ export type ActionType =
       type: "INCREMENT_QUESTION";
     }
   | {
+      type: "CLEAR_QUIZ";
+    }
+  | {
+      type: "CLEAR_QUIZ_CATEGORY";
+    }
+  | {
       type: "UPDATE_ANSWER";
       payload: {
         currentScore: number;

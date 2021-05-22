@@ -1,5 +1,5 @@
 import { QuizQuestions } from "../../Data/Data.type";
-import { FitnessQuiz } from "../../Data/FitnessData";
+
 import { ActionType, InitialState } from "./QuizContext.type";
 
 export const quizReducer = (
@@ -18,12 +18,30 @@ export const quizReducer = (
       return {
         ...state,
         categorySelected: action.payload.categorySelected,
-        quiz: FitnessQuiz,
+        quiz: action.payload.quiz,
       };
     case "INCREMENT_QUESTION":
       return {
         ...state,
         currentQuestion: state.currentQuestion + 1,
+      };
+    case "CLEAR_QUIZ":
+      return {
+        ...state,
+        userName: "",
+        userAvatar: "",
+        categorySelected: "",
+        currentScore: 0,
+        currentQuestion: 1,
+        scoreData: [],
+      };
+    case "CLEAR_QUIZ_CATEGORY":
+      return {
+        ...state,
+        categorySelected: "",
+        currentScore: 0,
+        currentQuestion: 1,
+        scoreData: [],
       };
 
     case "UPDATE_ANSWER":

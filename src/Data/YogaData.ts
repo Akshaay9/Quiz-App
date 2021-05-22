@@ -48,7 +48,7 @@ export const YOgaQUiz: Quiz = {
         },
         {
           id: 22,
-          optionDesc: "Asteya, Aparigraha, Brahmacharya",
+          optionDesc: "Asteya, Aparigraha, Brahma",
           answer: false,
         },
         {
@@ -73,7 +73,7 @@ export const YOgaQUiz: Quiz = {
       option: [
         {
           id: 31,
-          optionDesc: "Hindu system of philosophy & meditation",
+          optionDesc: "Hindu system of philosophy",
           answer: false,
         },
         {

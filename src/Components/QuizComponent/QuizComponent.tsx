@@ -170,9 +170,6 @@ function QuizComponent() {
             )}
           </div>
           <div className="quiz-right-cta">
-            <button className="quit-quiz-cta" onClick={() => navigate("/")}>
-              <i className="fas fa-power-off"></i>Quit Quiz
-            </button>
             <button
               className="skip-quiz-btn disabled-btn"
               disabled={!playling}
