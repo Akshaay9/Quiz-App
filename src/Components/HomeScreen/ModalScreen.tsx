@@ -58,12 +58,14 @@ function ModalScreen() {
         <div className="modal-screen-body-two">
           <div
             className="modal-screen-img1 img3"
+          
             onClick={() => categoryHandler3()}
           >
             <h4>Meditation</h4>
           </div>
           <div
             className="modal-screen-img2 img4"
+         
             onClick={() => categoryHandler4()}
           >
             <h4>Calorie</h4>

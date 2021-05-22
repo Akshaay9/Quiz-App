@@ -37,7 +37,7 @@
   cursor: pointer;
 }
 .quiz-left-navs h4:hover {
-  background-color: #141d42;
+  background-color: rgb(25 34 68 / 82%);
   border-left: 1px solid #8d909c;
   border-right: 1px solid #8d909c;
 }
