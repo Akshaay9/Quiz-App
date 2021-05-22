@@ -7,11 +7,12 @@ import DenseTable from "./LeaderBoarStats";
 import ScoreStatsandgraph from "./ScoreStatsandgraph";
 import AnswerStatsAndGraph from "./AnswerStatsAndGraph";
 import Timinggraph from "./Timinggraph";
+import { Squash as Hamburger } from "hamburger-react";
 
 function ResultStats() {
   const navigate = useNavigate();
   const { quizState, quizDispatch } = useQuizContext();
-
+  const [showModal, setShowModal] = useState(false);
   const [navForResult, setSHowNav] = useState("leaderboard");
 
   const getANswerStats = (answer: string): number => {
@@ -29,7 +30,7 @@ function ResultStats() {
       <div className="quiz-main">
         {/* quiz left */}
 
-        <div className="quiz-left">
+        <div className={`quiz-left ${!showModal ? `show-quizzes` : ``}`}>
           <div className="quiz-left-avatar">
             <img src={quizState.userAvatar} alt="" />
           </div>
@@ -56,7 +57,10 @@ function ResultStats() {
                     }
                   : {}
               }
-              onClick={() => setSHowNav("leaderboard")}
+              onClick={() => {
+                setSHowNav("leaderboard");
+                setShowModal(!showModal);
+              }}
             >
               Leader Board
             </h4>
@@ -70,7 +74,10 @@ function ResultStats() {
                     }
                   : {}
               }
-              onClick={() => setSHowNav("scorestats")}
+              onClick={() => {
+                setSHowNav("scorestats");
+                setShowModal(!showModal);
+              }}
             >
               Score Stats and graphs
             </h4>
@@ -84,7 +91,10 @@ function ResultStats() {
                     }
                   : {}
               }
-              onClick={() => setSHowNav("answestats")}
+              onClick={() => {
+                setSHowNav("answestats");
+                setShowModal(!showModal);
+              }}
             >
               Answer stats and Graph
             </h4>
@@ -98,27 +108,40 @@ function ResultStats() {
                     }
                   : {}
               }
-              onClick={() => setSHowNav("timingstats")}
+              onClick={() => {
+                setSHowNav("timingstats");
+                setShowModal(!showModal);
+              }}
             >
               Timing stats and Graph
             </h4>
           </div>
           <div className="btn-result">
-            <button className="btn-result-1" onClick={() => {
-              quizDispatch({ type: "CLEAR_QUIZ_CATEGORY" })
-              navigate("/",{state:{from:"result"}})
-            }}
-            >Change Category</button>
-            <button className="btn-result-1 btn-result-2" onClick={() => {
-              quizDispatch({ type: "CLEAR_QUIZ" });
-              navigate("/")
-            }}>
+            <button
+              className="btn-result-1"
+              onClick={() => {
+                quizDispatch({ type: "CLEAR_QUIZ_CATEGORY" });
+                navigate("/", { state: { from: "result" } });
+                
+              }}
+            >
+              Change Category
+            </button>
+            <button
+              className="btn-result-1 btn-result-2"
+              onClick={() => {
+                quizDispatch({ type: "CLEAR_QUIZ" });
+                navigate("/");
+              }}
+            >
               <i className="fas fa-power-off"></i>Quit Quiz
             </button>
-</div>
-
+          </div>
         </div>
         <div className="quiz-right">
+          <div className="desktopHide">
+            <Hamburger toggle={setShowModal} toggled={showModal} />
+          </div>
           {navForResult == "leaderboard" && (
             <>
               <div className="quiz-right-top-stats">
@@ -152,7 +175,10 @@ function ResultStats() {
                 <DenseTable />
               </div>
 
-              <button className="btn-stats" onClick={() => setSHowNav("scorestats")}>
+              <button
+                className={`btn-stats ${showModal ? `hamHide` : ``}`}
+                onClick={() => setSHowNav("scorestats")}
+              >
                 Check Score Stats
                 <i className="fas fa-chevron-right"></i>
               </button>
@@ -162,7 +188,7 @@ function ResultStats() {
             <>
               <ScoreStatsandgraph />
               <button
-                className="btn-stats"
+                className={`btn-stats ${showModal ? `hamHide` : ``}`}
                 onClick={() => setSHowNav("answestats")}
               >
                 Check Answer Stats
@@ -174,7 +200,9 @@ function ResultStats() {
             <>
               <AnswerStatsAndGraph />
               <button
-                className="btn-stats answer-stats"
+                className={`btn-stats answer-stats ${
+                  showModal ? `hamHide` : ``
+                }`}
                 onClick={() => setSHowNav("timingstats")}
               >
                 Check Timing Stats

@@ -8,6 +8,7 @@ import { QuizOption, QuizQuestions } from "../../Data/Data.type";
 import "./App.css";
 import QuizOptions from "./QuizOptions";
 import QuizTree from "./QuizTree";
+import { Squash as Hamburger } from "hamburger-react";
 
 function QuizComponent() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ function QuizComponent() {
   const [key, setKey] = useState<number>(0);
   const [playling, isPlayling] = useState<boolean>(true);
   const [currentTime, setCurrentTime] = useState<number>();
+  const [showModal, setShowModal] = useState(false);
 
   const getCurrentQuestion = (id: number): QuizQuestions | undefined => {
     const currQuestion = quizState.quiz.questions.find(
@@ -57,7 +59,7 @@ function QuizComponent() {
       <div className="quiz-main">
         {/* quiz left */}
 
-        <div className="quiz-left">
+        <div className={`quiz-left ${!showModal ? `show-quizzes` : ``}`}>
           <div className="quiz-left-avatar">
             <img src={quizState.userAvatar} alt="" />
           </div>
@@ -84,6 +86,10 @@ function QuizComponent() {
           </div>
         </div>
         <div className="quiz-right">
+          <div className="desktopHide">
+          <Hamburger toggle={setShowModal} toggled={showModal}  />
+          </div>
+         
           <div className="quiz-right-top">
             <h3>{quizState.categorySelected} Quiz</h3>
             <h2>
@@ -111,7 +117,7 @@ function QuizComponent() {
               {getCurrentQuestion(quizState.currentQuestion)?.questionDesc}
             </p>
           </div>
-          <div className="quiz-right-countdown">
+          <div className={`quiz-right-countdown ${showModal ? `hamHide`:``}`}>
             <CountdownCircleTimer
               onComplete={() => {
                 quizDispatch({
