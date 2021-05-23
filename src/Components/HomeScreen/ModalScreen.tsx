@@ -1,6 +1,7 @@
 import React, { MouseEvent, useState } from "react";
 import { useNavigate } from "react-router";
 import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
+import { calorieQuiz } from "../../Data/CalorieData";
 import { FitnessQuiz } from "../../Data/FitnessData";
 import { MeditationQuiz } from "../../Data/MeditationData";
 import { YOgaQUiz } from "../../Data/YogaData";
@@ -41,7 +42,14 @@ function ModalScreen() {
     navigate("/quiz");
   };
   const categoryHandler4 = () => {
-    console.log("calories");
+    quizDispatch({
+      type: "INITIALIZE_CATEGORY",
+      payload: {
+        categorySelected: "Calories",
+        quiz: calorieQuiz,
+      },
+    });
+    navigate("/quiz");
   };
 
   return (
@@ -66,14 +74,12 @@ function ModalScreen() {
         <div className="modal-screen-body-two">
           <div
             className="modal-screen-img1 img3"
-          
             onClick={() => categoryHandler3()}
           >
             <h4>Meditation</h4>
           </div>
           <div
             className="modal-screen-img2 img4"
-         
             onClick={() => categoryHandler4()}
           >
             <h4>Calorie</h4>

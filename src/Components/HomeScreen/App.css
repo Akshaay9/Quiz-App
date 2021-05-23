@@ -159,7 +159,7 @@
 .img4{
   padding: .9rem 3.5rem;
   background-color:#ff4f58;
-  cursor: not-allowed;
+  /* cursor: not-allowed; */
   /* pointer-events: none; */
 }
 
