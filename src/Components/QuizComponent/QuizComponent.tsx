@@ -146,7 +146,7 @@ function QuizComponent() {
               size={120}
               strokeWidth={7}
               isPlaying={playling}
-              duration={5}
+              duration={20}
               colors={[
                 ["#141a33", 0.33],
                 ["#F7B801", 0.33],

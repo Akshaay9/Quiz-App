@@ -10,26 +10,44 @@ import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+    minWidth: 550,
   },
 });
 
 function createData(
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
+  Rank: Number,
+  Name: string,
+  Score: number,
+  Category: number,
+  Avatar: string
 ) {
-  return { name, calories, fat, carbs, protein };
+  return { Rank, Name, Score, Category, Avatar };
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
+  createData(
+    1,
+    "Akshay",
+    6.0,
+    24,
+    "https://avatars.dicebear.com/api/male/.svg"
+  ),
+  createData(
+    2,
+    "kal-el",
+    9.0,
+    37,
+    "https://avatars.dicebear.com/api/female/.svg"
+  ),
+  createData(
+    3,
+    "steve",
+    16.0,
+    24,
+    "https://avatars.dicebear.com/api/jdenticon/.svg"
+  ),
+  createData(4, "tony", 3.7, 67, "https://avatars.dicebear.com/api/initials/.svg"),
+  createData(5, "thor", 16.0, 49, "https://avatars.dicebear.com/api/bottts/.svg"),
 ];
 
 export default function DenseTable() {
@@ -44,19 +62,24 @@ export default function DenseTable() {
             <TableCell align="right">Name</TableCell>
             <TableCell align="right">Score</TableCell>
             <TableCell align="right">Category</TableCell>
-            <TableCell align="right">Avatar</TableCell>
+            <TableCell align="center">Avatar</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
+            <TableRow>
+              <TableCell align="left">{row.Rank}</TableCell>
+              <TableCell align="right">{row.Name}</TableCell>
+              <TableCell align="right">{row.Score}</TableCell>
+              <TableCell align="right">{row.Category}</TableCell>
+              <TableCell align="center">
+                {" "}
+                <img
+                  style={{ width: "15%", borderRadius: "50%" }}
+                  src={row.Avatar}
+                  alt=""
+                />
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
             </TableRow>
           ))}
         </TableBody>
