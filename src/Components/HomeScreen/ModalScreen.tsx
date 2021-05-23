@@ -2,6 +2,7 @@ import React, { MouseEvent, useState } from "react";
 import { useNavigate } from "react-router";
 import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
 import { FitnessQuiz } from "../../Data/FitnessData";
+import { MeditationQuiz } from "../../Data/MeditationData";
 import { YOgaQUiz } from "../../Data/YogaData";
 
 function ModalScreen() {
@@ -30,7 +31,14 @@ function ModalScreen() {
     navigate("/quiz");
   };
   const categoryHandler3 = () => {
-    console.log("meditation");
+    quizDispatch({
+      type: "INITIALIZE_CATEGORY",
+      payload: {
+        categorySelected: "meditation",
+        quiz: MeditationQuiz,
+      },
+    });
+    navigate("/quiz");
   };
   const categoryHandler4 = () => {
     console.log("calories");

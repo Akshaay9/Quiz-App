@@ -1,150 +1,150 @@
 import { Quiz } from "./Data.type";
 
-export const FitnessQuiz: Quiz = {
-  category: "fitness",
+export const MeditationQuiz: Quiz = {
+  category: "meditation",
   questions: [
     {
       id: 1,
       questionDesc:
-        "Which exercise boosts metabolism 24 hours a day, seven days a week?",
+        "Meditation is focused on training which part of a human being?",
       isAnswered: "no",
       timerDuration: 0,
 
       option: [
         {
           id: 11,
-          optionDesc: "strength training",
+          optionDesc: "your mind",
           answer: true,
         },
         {
           id: 12,
-          optionDesc: "Pilates",
+          optionDesc: "your body",
           answer: false,
         },
         {
           id: 13,
-          optionDesc: "yoga",
+          optionDesc: "your soul",
           answer: false,
         },
         {
           id: 14,
-          optionDesc: "kickboxing",
+          optionDesc: "your environment",
           answer: false,
         },
       ],
     },
     {
       id: 2,
-      questionDesc: "What does HIIT stand for",
+      questionDesc: "What is a defining trait of Focused Attention meditation?",
       isAnswered: "no",
       timerDuration: 0,
 
       option: [
         {
           id: 21,
-          optionDesc: "Heat",
+          optionDesc: "You give up on focusing your mind.",
           answer: false,
         },
         {
           id: 22,
-          optionDesc: "High-interval intensity training",
+          optionDesc: "you train to focus your mind",
           answer: false,
         },
         {
           id: 23,
-          optionDesc: "High-interval intensity therapy",
-          answer: false,
+          optionDesc: "You focus your mind on one thing.",
+          answer: true,
         },
         {
           id: 24,
-          optionDesc: "High-intensity interval training",
-          answer: true,
+          optionDesc: "try to connect sould and mind",
+          answer: false,
         },
       ],
     },
     {
       id: 3,
       questionDesc:
-        "What is the amount of calories one has to burn in ordered to reduce 1kg of fat from his body",
+        "What is neuroplasticity?",
       isAnswered: "no",
       timerDuration: 0,
 
       option: [
         {
           id: 31,
-          optionDesc: "7700 Kcal",
+          optionDesc: "The ability to change the brain's functionality",
           answer: true,
         },
         {
           id: 32,
-          optionDesc: "3500 Kcal",
+          optionDesc: "Drug-assisted meditation",
           answer: false,
         },
         {
           id: 33,
-          optionDesc: "5490 Kcal",
+          optionDesc: "The science of creating plastic brains",
           answer: false,
         },
         {
           id: 34,
-          optionDesc: "6700 Kcal",
+          optionDesc: "Meditating multiple times a day",
           answer: false,
         },
       ],
     },
     {
       id: 4,
-      questionDesc: "What does BMR stands for?",
+      questionDesc: "OMM stands for what kind of meditation?",
       isAnswered: "no",
       timerDuration: 0,
       option: [
         {
           id: 41,
-          optionDesc: "Bascal metabolic rate",
+          optionDesc: "Open Mind Meditation",
           answer: false,
         },
         {
           id: 42,
-          optionDesc: "bio metabolic rate ",
+          optionDesc: "Open Mindfull Meditation",
           answer: false,
         },
         {
           id: 43,
-          optionDesc: "Body metabolic rate (BMR)",
-          answer: false,
+          optionDesc: "Open Monitoring Meditation",
+          answer: true,
         },
         {
           id: 44,
-          optionDesc: "Basal molecular rate (BMR)",
-          answer: true,
+          optionDesc: "Oral Mentor Meditation",
+          answer: false,
         },
       ],
     },
     {
       id: 5,
-      questionDesc: "Which of these nutrients helps to build lean muscle",
+      questionDesc: "Some people say meditation can help you improve your `qi` which is what?",
       isAnswered: "no",
       timerDuration: 0,
       option: [
         {
           id: 41,
-          optionDesc: "fat",
+          optionDesc: "emotion",
           answer: false,
         },
         {
           id: 42,
-          optionDesc: "proteins",
-          answer: true,
+          optionDesc: "concentration",
+          answer: false,
         },
         {
           id: 43,
-          optionDesc: "carbohydrate",
+          optionDesc: "health",
           answer: false,
         },
         {
           id: 44,
-          optionDesc: "vitamins",
-          answer: false,
+          optionDesc: "life-force",
+          answer: true,
         },
       ],
     },

@@ -145,7 +145,7 @@
 .img3{
   background-color: #ea4c89bd;
   padding: .9rem 3.5rem;
-  cursor: not-allowed;
+  /* cursor: not-allowed; */
   /* pointer-events: none; */
 }
 /* .img3:disabled{
