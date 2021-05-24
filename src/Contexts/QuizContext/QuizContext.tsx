@@ -3,7 +3,7 @@ import { FitnessQuiz } from "../../Data/FitnessData";
 import { InitialState, ContextType } from "./QuizContext.type";
 import { quizReducer } from "./QuizReducer";
 
-const intitalState: InitialState = {
+export const intitalState: InitialState = {
   userName: "",
   userAvatar: "",
   categorySelected: "",
