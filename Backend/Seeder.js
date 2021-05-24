@@ -6,7 +6,8 @@ import LeaderBoard from "./Model/LeaderBoardModel.js";
 dbConnection()
 
 const importData = async() => {
-    try {
+  try {
+    await LeaderBoard.deleteMany()
         await LeaderBoard.insertMany(leaderBoard)
         console.log("videos and users has been successfully added");
         process.exit()
