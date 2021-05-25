@@ -1,7 +1,7 @@
 export const leaderBoard = [
     {
         name: "Akshay",
-        score: 30,
+        score: 20,
         category: "yoga",
         avatar:"https://avatars.dicebear.com/api/male/.svg"
     },
@@ -13,7 +13,7 @@ export const leaderBoard = [
     },
     {
         name: "steve",
-        score: 40,
+        score: 30,
         category: "fitness",
         avatar:"https://avatars.dicebear.com/api/jdenticon/.svg"
     },
