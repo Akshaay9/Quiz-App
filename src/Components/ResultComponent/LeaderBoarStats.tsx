@@ -11,53 +11,60 @@ import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
 import axios from "axios";
 import CongratsModal from "./CongratsModal";
 import Spinner from "../../Assets/Spinner";
+import { useLeaderBoardContext } from "../../Contexts/LeaderBoardContext/LeaderBoard";
+import { leaderBoardDesc } from "../../Contexts/LeaderBoardContext/LeaderBoardContext.type";
 
 export default function DenseTable() {
-  type leaderBoardDesc = {
-    rank: number;
-    name: string;
-    score: number;
-    category: number;
-    avatar: string;
-  };
+  const [modal, setModal] = useState<boolean>(false);
+  const { leaderBoardState, leaderboardDispatch } = useLeaderBoardContext();
+  const [loading, setLoading] = useState<boolean>(false);
+  const { quizState } = useQuizContext();
 
-  type leaderBoardType = {
-    result?: "string";
-    message?: "string";
+  type axiosData = {
+    result: string;
+    message?: string;
     data: leaderBoardDesc[];
   };
 
-  const [leaderBoardData, setLeaderBoardData] = useState<leaderBoardType>();
-  const [modal, setModal] = useState<boolean>(false);
-  const[loading,setLoading]=useState<boolean>(true);
-  const { quizState } = useQuizContext();
-
+  console.log(leaderBoardState.isLeaderBoardLoded);
   useEffect(() => {
-    (async () => {
-      try {
-        const urlData = {
-          name: quizState.userName,
-          category: quizState.categorySelected,
-          score: quizState.currentScore,
-          avatar: quizState.userAvatar,
-        };
-        const data = await axios.post(
-          `https://lit-taiga-43779.herokuapp.com/`,
-          urlData
-        );
-        if (data.data.message) {
-          setModal(true);
+    if (!leaderBoardState.isLeaderBoardLoded) {
+      (async () => {
+        console.log("async is loading");
+        setLoading(true);
+        try {
+          const urlData = {
+            name: quizState.userName,
+            category: quizState.categorySelected,
+            score: quizState.currentScore,
+            avatar: quizState.userAvatar,
+          };
+          const data = await axios.post<axiosData>(
+            `https://lit-taiga-43779.herokuapp.com/`,
+            urlData
+          );
+
+          if (data.data.message) {
+            setModal(true);
+          }
+          setLoading(false);
+          leaderboardDispatch({
+            type: "LOAD_LEADERBOARD",
+            payload: {
+              result: data?.data?.result,
+              message: data?.data?.message ? data?.data?.message! : "",
+              data: data.data.data,
+            },
+          });
+        } catch (error) {
+          console.log(error);
+          setLoading(false);
         }
-        setLoading(false)
-        setLeaderBoardData(data.data);
-      } catch (error) {
-        console.log(error);
-        setLoading(false)
-      }
-    })();
+      })();
+    }
   }, []);
 
-  console.log(leaderBoardData);
+  console.log(leaderBoardState);
 
   const useStyles = makeStyles({
     table: {
@@ -77,7 +84,7 @@ export default function DenseTable() {
     return { Rank, Name, Score, Category, Avatar };
   }
 
-  const rows = leaderBoardData?.data?.map((ele, index) =>
+  const rows = leaderBoardState?.data?.map((ele, index) =>
     createData(index, ele.name, ele?.score, ele?.category, ele?.avatar)
   );
 
@@ -86,11 +93,11 @@ export default function DenseTable() {
       {modal && (
         <CongratsModal
           setModal={setModal}
-          message={leaderBoardData?.message}
-          result={leaderBoardData?.result}
+          message={leaderBoardState?.message}
+          result={leaderBoardState?.result}
         />
       )}
-     
+
       <TableContainer component={Paper}>
         <Table
           className={classes.table}
@@ -128,7 +135,7 @@ export default function DenseTable() {
           </TableBody>
         </Table>
       </TableContainer>
-   { loading &&  <Spinner/>}
+      {loading && <Spinner />}
     </>
   );
 }

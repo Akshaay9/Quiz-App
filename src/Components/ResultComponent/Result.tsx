@@ -8,12 +8,14 @@ import ScoreStatsandgraph from "./ScoreStatsandgraph";
 import AnswerStatsAndGraph from "./AnswerStatsAndGraph";
 import Timinggraph from "./Timinggraph";
 import { Squash as Hamburger } from "hamburger-react";
+import { useLeaderBoardContext } from "../../Contexts/LeaderBoardContext/LeaderBoard";
 
 function ResultStats() {
   const navigate = useNavigate();
   const { quizState, quizDispatch } = useQuizContext();
   const [showModal, setShowModal] = useState(false);
   const [navForResult, setSHowNav] = useState("leaderboard");
+  const {  leaderboardDispatch } = useLeaderBoardContext();
 
   const getANswerStats = (answer: string): number => {
     const answerNumber = quizState.quiz.questions.filter(
@@ -121,6 +123,9 @@ function ResultStats() {
               className="btn-result-1"
               onClick={() => {
                 quizDispatch({ type: "CLEAR_QUIZ_CATEGORY" });
+                leaderboardDispatch({
+                  type:"CLEAR_LEADERBOARD"
+                })
                 navigate("/", { state: { from: "result" } });
                 
               }}
@@ -131,8 +136,12 @@ function ResultStats() {
               className="btn-result-1 btn-result-2"
               onClick={() => {
                 quizDispatch({ type: "CLEAR_QUIZ" });
+                leaderboardDispatch({
+                  type:"CLEAR_LEADERBOARD"
+                })
                 navigate("/");
               }}
+
             >
               <i className="fas fa-power-off"></i>Quit Quiz
             </button>

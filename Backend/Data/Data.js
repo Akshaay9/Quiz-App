@@ -1,13 +1,13 @@
 export const leaderBoard = [
     {
         name: "Akshay",
-        score: 20,
+        score: 10,
         category: "yoga",
         avatar:"https://avatars.dicebear.com/api/male/.svg"
     },
     {
         name: "kal-el",
-        score: 30,
+        score: 20,
         category: "calorie",
         avatar:"https://avatars.dicebear.com/api/female/.svg"
     },
@@ -19,13 +19,13 @@ export const leaderBoard = [
     },
     {
         name: "tony",
-        score: 40,
+        score: 30,
         category: "meditation",
         avatar:"https://avatars.dicebear.com/api/initials/.svg"
     },
     {
         name: "thor",
-        score: 50,
+        score: 40,
         category: "fitness",
         avatar:"https://avatars.dicebear.com/api/bottts/.svg"
     }
