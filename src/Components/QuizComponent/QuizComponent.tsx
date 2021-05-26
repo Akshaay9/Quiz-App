@@ -125,7 +125,7 @@ function QuizComponent() {
                   payload: {
                     currentScore: -10,
                     isAnswered: `timeUP`,
-                    time: -5,
+                    time: -20,
                     scoreData: quizState.currentScore - 10,
                   },
                 });
