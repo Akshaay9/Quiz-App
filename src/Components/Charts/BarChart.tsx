@@ -4,7 +4,7 @@ import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
 import { QuizQuestions } from "../../Data/Data.type";
 
 function BarChart() {
-    const { quizState, quizDispatch } = useQuizContext();
+    const { quizState } = useQuizContext();
 
 const newData=quizState.quiz.questions.map((ele:QuizQuestions) =>ele.timerDuration)
 

@@ -1,4 +1,4 @@
-import React from 'react'
+
 import ResultStats from "./Result"
 function Index() {
     return (
