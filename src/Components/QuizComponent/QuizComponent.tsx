@@ -1,5 +1,5 @@
 import ProgressBar from "@ramonak/react-progress-bar";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { useNavigate } from "react-router";
 import { setTimeout } from "timers";
@@ -20,7 +20,7 @@ function QuizComponent() {
 
   const getCurrentQuestion = (id: number): QuizQuestions | undefined => {
     const currQuestion = quizState.quiz.questions.find(
-      (ele: QuizQuestions) => ele.id == id
+      (ele: QuizQuestions) => ele.id === id
     );
     return currQuestion;
   };
@@ -34,12 +34,12 @@ function QuizComponent() {
       payload: {
         currentScore: -10,
         isAnswered: `skip`,
-        time: -5,
+        time: 20,
         scoreData: quizState.currentScore - 10,
       },
     });
     isPlayling(false);
-    if (quizState.currentQuestion == 5) {
+    if (quizState.currentQuestion === 5) {
       setTimeout(() => {
         navigate("/result");
       }, 1000);
@@ -125,11 +125,11 @@ function QuizComponent() {
                   payload: {
                     currentScore: -10,
                     isAnswered: `timeUP`,
-                    time: -20,
+                    time: 20,
                     scoreData: quizState.currentScore - 10,
                   },
                 });
-                if (quizState.currentQuestion == 5) {
+                if (quizState.currentQuestion === 5) {
                   setTimeout(() => {
                     navigate("/result");
                   }, 1000);

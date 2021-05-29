@@ -6,7 +6,7 @@ import { QuizQuestions } from "../../Data/Data.type";
 function BarChart() {
     const { quizState } = useQuizContext();
 
-const newData=quizState.quiz.questions.map((ele:QuizQuestions) =>ele.timerDuration)
+const newData=quizState.quiz.questions.map((ele:QuizQuestions) =>20-Number(ele?.timerDuration))
 
   const data = {
     labels: [

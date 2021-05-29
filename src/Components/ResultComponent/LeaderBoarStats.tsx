@@ -85,7 +85,7 @@ export default function DenseTable() {
   }
 
   const rows = leaderBoardState?.data?.map((ele, index) =>
-    createData(index, ele.name, ele?.score, ele?.category, ele?.avatar)
+    createData(index+1, ele.name, ele?.score, ele?.category, ele?.avatar)
   );
 
   return (
