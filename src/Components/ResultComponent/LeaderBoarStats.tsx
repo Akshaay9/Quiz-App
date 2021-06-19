@@ -26,11 +26,11 @@ export default function DenseTable() {
     data: leaderBoardDesc[];
   };
 
-  console.log(leaderBoardState.isLeaderBoardLoded);
+
   useEffect(() => {
     if (!leaderBoardState.isLeaderBoardLoded) {
       (async () => {
-        console.log("async is loading");
+       
         setLoading(true);
         try {
           const urlData = {
