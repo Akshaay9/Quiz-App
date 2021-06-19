@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     (async () => {
       const initialPing = await axios.get(
-        `https://lit-taiga-43779.herokuapp.com`
+        `https://lit-taiga-43779.herokuapp.com/`
       );
     })();
   }, []);
