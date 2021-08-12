@@ -5,7 +5,7 @@
 
 <h3>Features</h3>
 <ul>
-  <li>4 different category of quiz to test your knowledge</li>
+  <li>4 different category of quiz to test your knowledge.</li>
   <li>Leaderboard to showcase top performers</li>
   <li>Line graph to showcase your score progres</li>
   <li>Pie chart to showcase your answer statistics</li>
