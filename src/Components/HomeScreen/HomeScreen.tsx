@@ -7,11 +7,7 @@ import { useState } from "react";
 import React, { Dispatch, SetStateAction } from "react";
 import { useQuizContext } from "../../Contexts/QuizContext/QuizContext";
 
-function HomeScreen({
-  setOpen,
-}: {
-  setOpen: Dispatch<SetStateAction<boolean>>;
-}) {
+function HomeScreen({setOpen,}: {setOpen: Dispatch<SetStateAction<boolean>>}) {
   const navigate = useNavigate();
   const { quizState, quizDispatch } = useQuizContext();
 

@@ -13,6 +13,7 @@ import CongratsModal from "./CongratsModal";
 import Spinner from "../../Assets/Spinner";
 import { useLeaderBoardContext } from "../../Contexts/LeaderBoardContext/LeaderBoard";
 import { leaderBoardDesc } from "../../Contexts/LeaderBoardContext/LeaderBoardContext.type";
+import { BE_URL } from "../../const";
 
 export default function DenseTable() {
   const [modal, setModal] = useState<boolean>(false);
@@ -26,11 +27,9 @@ export default function DenseTable() {
     data: leaderBoardDesc[];
   };
 
-
   useEffect(() => {
     if (!leaderBoardState.isLeaderBoardLoded) {
       (async () => {
-       
         setLoading(true);
         try {
           const urlData = {
@@ -39,10 +38,7 @@ export default function DenseTable() {
             score: quizState.currentScore,
             avatar: quizState.userAvatar,
           };
-          const data = await axios.post<axiosData>(
-            `https://lit-taiga-43779.herokuapp.com/`,
-            urlData
-          );
+          const data = await axios.post<axiosData>(`${BE_URL}/`, urlData);
 
           if (data.data.message) {
             setModal(true);
@@ -85,7 +81,7 @@ export default function DenseTable() {
   }
 
   const rows = leaderBoardState?.data?.map((ele, index) =>
-    createData(index+1, ele.name, ele?.score, ele?.category, ele?.avatar)
+    createData(index + 1, ele.name, ele?.score, ele?.category, ele?.avatar)
   );
 
   return (
