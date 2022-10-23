@@ -6,12 +6,13 @@ import HomeScreen from "./Components/HomeScreen/Index";
 import QuizComponent from "./Components/QuizComponent/QuizComponent";
 import CongratsModal from "./Components/ResultComponent/CongratsModal";
 import ResultComponent from "./Components/ResultComponent/Index";
+import {BE_URL} from "./const"
 
 function App() {
   useEffect(() => {
     (async () => {
       const initialPing = await axios.get(
-        `https://lit-taiga-43779.herokuapp.com/`
+        `${BE_URL}/`
       );
     })();
   }, []);
